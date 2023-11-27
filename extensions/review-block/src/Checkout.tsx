@@ -46,7 +46,7 @@ function Extension() {
             }
           />
         </View>
-        <TextBlock inlineAlignment="center" emphasis="bold">
+        <TextBlock inlineAlignment="center" >
           {review_content_1 ?? "Content"}
         </TextBlock>
         <View inlineAlignment={"center"} blockAlignment={"center"}>
@@ -82,7 +82,7 @@ function Extension() {
             }
           />
         </View>
-        <TextBlock inlineAlignment="center" emphasis="bold">
+        <TextBlock inlineAlignment="center" >
           {review_content_2 ?? "Content"}
         </TextBlock>
         <View inlineAlignment={"center"} blockAlignment={"center"}>
@@ -118,7 +118,7 @@ function Extension() {
             }
           />
         </View>
-        <TextBlock inlineAlignment="center" emphasis="bold">
+        <TextBlock inlineAlignment="center">
           {review_content_3 ?? "Content"}
         </TextBlock>
         <View inlineAlignment={"center"} blockAlignment={"center"}>
@@ -141,7 +141,7 @@ function Extension() {
           </InlineStack>
         </View>
       </BlockStack>
-      <TextBlock>
+      <TextBlock >
         {bottom_text ?? "Bottom text"}
       </TextBlock>
     </BlockLayout>

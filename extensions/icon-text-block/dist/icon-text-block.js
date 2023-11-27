@@ -19121,8 +19121,8 @@
   // node_modules/@shopify/ui-extensions/build/esm/surfaces/checkout/extension.mjs
   var extension = createExtensionRegistrationFunction();
 
-  // node_modules/@shopify/ui-extensions/build/esm/surfaces/checkout/components/BlockLayout/BlockLayout.mjs
-  var BlockLayout = createRemoteComponent("BlockLayout");
+  // node_modules/@shopify/ui-extensions/build/esm/surfaces/checkout/components/BlockSpacer/BlockSpacer.mjs
+  var BlockSpacer = createRemoteComponent("BlockSpacer");
 
   // node_modules/@shopify/ui-extensions/build/esm/surfaces/checkout/components/BlockStack/BlockStack.mjs
   var BlockStack = createRemoteComponent("BlockStack");
@@ -19130,11 +19130,14 @@
   // node_modules/@shopify/ui-extensions/build/esm/surfaces/checkout/components/Image/Image.mjs
   var Image = createRemoteComponent("Image");
 
+  // node_modules/@shopify/ui-extensions/build/esm/surfaces/checkout/components/InlineLayout/InlineLayout.mjs
+  var InlineLayout = createRemoteComponent("InlineLayout");
+
   // node_modules/@shopify/ui-extensions/build/esm/surfaces/checkout/components/InlineStack/InlineStack.mjs
   var InlineStack = createRemoteComponent("InlineStack");
 
-  // node_modules/@shopify/ui-extensions/build/esm/surfaces/checkout/components/InlineSpacer/InlineSpacer.mjs
-  var InlineSpacer = createRemoteComponent("InlineSpacer");
+  // node_modules/@shopify/ui-extensions/build/esm/surfaces/checkout/components/Text/Text.mjs
+  var Text = createRemoteComponent("Text");
 
   // node_modules/@shopify/ui-extensions/build/esm/surfaces/checkout/components/TextBlock/TextBlock.mjs
   var TextBlock = createRemoteComponent("TextBlock");
@@ -19470,8 +19473,8 @@ ${errorInfo.componentStack}`);
     }
   };
 
-  // node_modules/@shopify/ui-extensions-react/build/esm/surfaces/checkout/components/BlockLayout/BlockLayout.mjs
-  var BlockLayout2 = createRemoteReactComponent(BlockLayout);
+  // node_modules/@shopify/ui-extensions-react/build/esm/surfaces/checkout/components/BlockSpacer/BlockSpacer.mjs
+  var BlockSpacer2 = createRemoteReactComponent(BlockSpacer);
 
   // node_modules/@shopify/ui-extensions-react/build/esm/surfaces/checkout/components/BlockStack/BlockStack.mjs
   var BlockStack2 = createRemoteReactComponent(BlockStack);
@@ -19479,11 +19482,14 @@ ${errorInfo.componentStack}`);
   // node_modules/@shopify/ui-extensions-react/build/esm/surfaces/checkout/components/Image/Image.mjs
   var Image2 = createRemoteReactComponent(Image);
 
+  // node_modules/@shopify/ui-extensions-react/build/esm/surfaces/checkout/components/InlineLayout/InlineLayout.mjs
+  var InlineLayout2 = createRemoteReactComponent(InlineLayout);
+
   // node_modules/@shopify/ui-extensions-react/build/esm/surfaces/checkout/components/InlineStack/InlineStack.mjs
   var InlineStack2 = createRemoteReactComponent(InlineStack);
 
-  // node_modules/@shopify/ui-extensions-react/build/esm/surfaces/checkout/components/InlineSpacer/InlineSpacer.mjs
-  var InlineSpacer2 = createRemoteReactComponent(InlineSpacer);
+  // node_modules/@shopify/ui-extensions-react/build/esm/surfaces/checkout/components/Text/Text.mjs
+  var Text2 = createRemoteReactComponent(Text);
 
   // node_modules/@shopify/ui-extensions-react/build/esm/surfaces/checkout/components/TextBlock/TextBlock.mjs
   var TextBlock2 = createRemoteReactComponent(TextBlock);
@@ -19492,7 +19498,7 @@ ${errorInfo.componentStack}`);
   var View2 = createRemoteReactComponent(View);
 
   // node_modules/@shopify/ui-extensions-react/build/esm/surfaces/checkout/hooks/api.mjs
-  var import_react15 = __toESM(require_react(), 1);
+  var import_react16 = __toESM(require_react(), 1);
 
   // node_modules/@shopify/ui-extensions-react/build/esm/surfaces/checkout/errors.mjs
   var CheckoutUIExtensionError = class extends Error {
@@ -19504,7 +19510,7 @@ ${errorInfo.componentStack}`);
 
   // node_modules/@shopify/ui-extensions-react/build/esm/surfaces/checkout/hooks/api.mjs
   function useApi(_target) {
-    const api = (0, import_react15.useContext)(ExtensionApiContext);
+    const api = (0, import_react16.useContext)(ExtensionApiContext);
     if (api == null) {
       throw new CheckoutUIExtensionError("You can only call this hook when running as a UI extension.");
     }
@@ -19512,10 +19518,10 @@ ${errorInfo.componentStack}`);
   }
 
   // node_modules/@shopify/ui-extensions-react/build/esm/surfaces/checkout/hooks/subscription.mjs
-  var import_react16 = __toESM(require_react(), 1);
+  var import_react17 = __toESM(require_react(), 1);
   function useSubscription(subscription) {
-    const [, setValue] = (0, import_react16.useState)(subscription.current);
-    (0, import_react16.useEffect)(() => {
+    const [, setValue] = (0, import_react17.useState)(subscription.current);
+    (0, import_react17.useEffect)(() => {
       let didUnsubscribe = false;
       const checkForUpdates = (newValue) => {
         if (didUnsubscribe) {
@@ -19534,19 +19540,19 @@ ${errorInfo.componentStack}`);
   }
 
   // node_modules/@shopify/ui-extensions-react/build/esm/surfaces/checkout/hooks/translate.mjs
-  var import_react17 = __toESM(require_react(), 1);
+  var import_react18 = __toESM(require_react(), 1);
   function useTranslate() {
     const {
       i18n
     } = useApi();
-    const translate = (0, import_react17.useCallback)((...args) => {
+    const translate = (0, import_react18.useCallback)((...args) => {
       const translation = i18n.translate(...args);
       if (!Array.isArray(translation)) {
         return translation;
       }
       return translation.map((part, index) => {
-        if (/* @__PURE__ */ (0, import_react17.isValidElement)(part)) {
-          return /* @__PURE__ */ (0, import_react17.cloneElement)(part, {
+        if (/* @__PURE__ */ (0, import_react18.isValidElement)(part)) {
+          return /* @__PURE__ */ (0, import_react18.cloneElement)(part, {
             key: index
           });
         }
@@ -19562,132 +19568,49 @@ ${errorInfo.componentStack}`);
     return settings;
   }
 
-  // extensions/review-block/src/Checkout.tsx
+  // extensions/icon-text-block/src/Checkout.tsx
   var import_jsx_runtime4 = __toESM(require_jsx_runtime());
   var Checkout_default = reactExtension("purchase.checkout.block.render", () => /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Extension, {}));
   function Extension() {
     const translate = useTranslate();
     const { extension: extension2 } = useApi();
-    const {
-      review_content_1,
-      review_content_2,
-      review_content_3,
-      review_name_1,
-      review_name_2,
-      review_name_3,
-      bottom_text
-    } = useSettings();
-    return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(BlockLayout2, { spacing: "base", padding: "none", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(
-        BlockStack2,
-        {
-          spacing: "base",
-          border: "base",
-          padding: "base",
-          cornerRadius: "large",
-          children: [
-            /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(View2, { display: "block", inlineAlignment: "center", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
-              Image2,
-              {
-                source: "https://cdn.shopify.com/s/files/1/0036/4357/2269/files/dont_remove_Stars.png?v=1701069109"
-              }
-            ) }),
-            /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(TextBlock2, { inlineAlignment: "center", children: review_content_1 != null ? review_content_1 : "Content" }),
-            /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(View2, { inlineAlignment: "center", blockAlignment: "center", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(
-              InlineStack2,
-              {
-                blockAlignment: "center",
-                spacing: "none",
-                inlineAlignment: "center",
-                children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(View2, { blockAlignment: "center", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(TextBlock2, { size: "small", children: review_name_1 != null ? review_name_1 : "Name" }) }),
-                  /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(InlineSpacer2, { spacing: "tight" }),
-                  /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(View2, { blockAlignment: "center", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
-                    Image2,
-                    {
-                      source: "https://cdn.shopify.com/s/files/1/0036/4357/2269/files/dont_remove_Outer.png?v=1701069109"
-                    }
-                  ) })
-                ]
-              }
-            ) })
-          ]
-        }
-      ),
-      /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(
-        BlockStack2,
-        {
-          spacing: "base",
-          border: "base",
-          padding: "base",
-          cornerRadius: "large",
-          children: [
-            /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(View2, { display: "block", inlineAlignment: "center", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
-              Image2,
-              {
-                source: "https://cdn.shopify.com/s/files/1/0036/4357/2269/files/dont_remove_Stars.png?v=1701069109"
-              }
-            ) }),
-            /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(TextBlock2, { inlineAlignment: "center", children: review_content_2 != null ? review_content_2 : "Content" }),
-            /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(View2, { inlineAlignment: "center", blockAlignment: "center", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(
-              InlineStack2,
-              {
-                blockAlignment: "center",
-                spacing: "none",
-                inlineAlignment: "center",
-                children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(View2, { blockAlignment: "center", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(TextBlock2, { size: "small", children: review_name_2 != null ? review_name_2 : "Name" }) }),
-                  /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(InlineSpacer2, { spacing: "tight" }),
-                  /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(View2, { blockAlignment: "center", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
-                    Image2,
-                    {
-                      source: "https://cdn.shopify.com/s/files/1/0036/4357/2269/files/dont_remove_Outer.png?v=1701069109"
-                    }
-                  ) })
-                ]
-              }
-            ) })
-          ]
-        }
-      ),
-      /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(
-        BlockStack2,
-        {
-          spacing: "base",
-          border: "base",
-          padding: "base",
-          cornerRadius: "large",
-          children: [
-            /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(View2, { display: "block", inlineAlignment: "center", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
-              Image2,
-              {
-                source: "https://cdn.shopify.com/s/files/1/0036/4357/2269/files/dont_remove_Stars.png?v=1701069109"
-              }
-            ) }),
-            /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(TextBlock2, { inlineAlignment: "center", children: review_content_3 != null ? review_content_3 : "Content" }),
-            /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(View2, { inlineAlignment: "center", blockAlignment: "center", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(
-              InlineStack2,
-              {
-                blockAlignment: "center",
-                spacing: "none",
-                inlineAlignment: "center",
-                children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(View2, { blockAlignment: "center", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(TextBlock2, { size: "small", children: review_name_3 != null ? review_name_3 : "Name" }) }),
-                  /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(InlineSpacer2, { spacing: "tight" }),
-                  /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(View2, { blockAlignment: "center", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
-                    Image2,
-                    {
-                      source: "https://cdn.shopify.com/s/files/1/0036/4357/2269/files/dont_remove_Outer.png?v=1701069109"
-                    }
-                  ) })
-                ]
-              }
-            ) })
-          ]
-        }
-      ),
-      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(TextBlock2, { children: bottom_text != null ? bottom_text : "Bottom text" })
+    const { shipping_text } = useSettings();
+    return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(BlockStack2, { spacing: "none", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(InlineStack2, { spacing: "base", blockAlignment: "center", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(View2, { blockAlignment: "center", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
+          Image2,
+          {
+            source: "https://cdn.shopify.com/s/files/1/0036/4357/2269/files/dont_remove_circle-tick_svg.png?v=1701071687"
+          }
+        ) }),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(View2, { blockAlignment: "center", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Text2, { size: "large", emphasis: "bold", children: "Vet-Approved Meals" }) })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(BlockSpacer2, { spacing: "base" }),
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(InlineStack2, { spacing: "base", blockAlignment: "center", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(View2, { blockAlignment: "center", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
+          Image2,
+          {
+            source: "https://cdn.shopify.com/s/files/1/0036/4357/2269/files/dont_remove_div._1frageme0.png?v=1701071687"
+          }
+        ) }),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(View2, { blockAlignment: "center", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Text2, { size: "large", emphasis: "bold", children: "Edit, Pause or Cancel Anytime" }) })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(BlockSpacer2, { spacing: "base" }),
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(InlineStack2, { spacing: "base", blockAlignment: "center", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(View2, { children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
+          Image2,
+          {
+            source: "https://cdn.shopify.com/s/files/1/0036/4357/2269/files/dont_remove_div.h2d-37def549.png?v=1701071687"
+          }
+        ) }),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(View2, { children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Text2, { size: "large", emphasis: "bold", children: "Free Shipping" }) })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(InlineLayout2, { columns: ["10%", "fill"], children: [
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(View2, {}),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(View2, { children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(TextBlock2, { size: "medium", children: shipping_text != null ? shipping_text : "" }) })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(BlockSpacer2, { spacing: "loose" }),
+      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(TextBlock2, { emphasis: "bold", size: "extraLarge", inlineAlignment: "center", children: "Add Treats and Save" })
     ] });
   }
 })();
-//# sourceMappingURL=review-block.js.map
