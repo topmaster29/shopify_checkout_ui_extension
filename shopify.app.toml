@@ -1,0 +1,28 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+name = "nutrication-app"
+client_id = "e86e07aec7baf1f4fd940f2d9e7ee093"
+application_url = "https://secrets-paragraphs-sustainable-roulette.trycloudflare.com"
+embedded = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products"
+
+[auth]
+redirect_urls = [
+  "https://secrets-paragraphs-sustainable-roulette.trycloudflare.com/auth/callback",
+  "https://secrets-paragraphs-sustainable-roulette.trycloudflare.com/auth/shopify/callback",
+  "https://secrets-paragraphs-sustainable-roulette.trycloudflare.com/api/auth/callback",
+  "https://secrets-paragraphs-sustainable-roulette.trycloudflare.com/.shopify/graphiql/auth/callback"
+]
+
+[webhooks]
+api_version = "2023-10"
+
+[pos]
+embedded = false
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "ex-ui-test.myshopify.com"
