@@ -2,7 +2,7 @@
 
 name = "nutrication-app"
 client_id = "e86e07aec7baf1f4fd940f2d9e7ee093"
-application_url = "https://secrets-paragraphs-sustainable-roulette.trycloudflare.com"
+application_url = "https://williams-ballot-translator-humans.trycloudflare.com"
 embedded = true
 
 [access_scopes]
@@ -11,10 +11,10 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://secrets-paragraphs-sustainable-roulette.trycloudflare.com/auth/callback",
-  "https://secrets-paragraphs-sustainable-roulette.trycloudflare.com/auth/shopify/callback",
-  "https://secrets-paragraphs-sustainable-roulette.trycloudflare.com/api/auth/callback",
-  "https://secrets-paragraphs-sustainable-roulette.trycloudflare.com/.shopify/graphiql/auth/callback"
+  "https://williams-ballot-translator-humans.trycloudflare.com/auth/callback",
+  "https://williams-ballot-translator-humans.trycloudflare.com/auth/shopify/callback",
+  "https://williams-ballot-translator-humans.trycloudflare.com/api/auth/callback",
+  "https://williams-ballot-translator-humans.trycloudflare.com/.shopify/graphiql/auth/callback"
 ]
 
 [webhooks]
@@ -25,4 +25,4 @@ embedded = false
 
 [build]
 automatically_update_urls_on_dev = true
-dev_store_url = "ex-ui-test.myshopify.com"
+dev_store_url = "rju-app-store.myshopify.com"
