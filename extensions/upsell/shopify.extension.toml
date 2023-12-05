@@ -43,9 +43,21 @@ api_access = true
 # your extension. Learn more:
 # https://shopify.dev/docs/api/checkout-ui-extensions/unstable/configuration#settings-definition
 
-# [extensions.settings]
-# [[extensions.settings.fields]]
-# key = "banner_title"
-# type = "single_line_text_field"
-# name = "Banner title"
-# description = "Enter a title for the banner"
+ [extensions.settings]
+ [[extensions.settings.fields]]
+ key = "product_type"
+ type = "single_line_text_field"
+ name = "Product Type"
+ description = "Enter product type you want to add"
+
+[[extensions.settings.fields]]
+ key = "product_num"
+ type = "single_line_text_field"
+ name = "Number of Products"
+ description = "Enter the number of products you want to add"
+ [[extensions.settings.fields]]
+ key = "collection_handle"
+ type = "single_line_text_field"
+ name = "Collection Handle"
+ description = "Enter the handle of collection that includes products you want to add"
+ 
