@@ -77,10 +77,6 @@ function Extension() {
           <TextBlock size="medium">{shipping_text ?? ""}</TextBlock>
         </View>
       </InlineLayout>
-      <BlockSpacer spacing="loose" />
-      <TextBlock emphasis="bold" size="extraLarge" inlineAlignment="center">
-        Add Treats and Save
-      </TextBlock>
     </BlockStack>
   );
 }

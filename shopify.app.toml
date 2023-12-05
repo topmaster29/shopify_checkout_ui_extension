@@ -2,7 +2,7 @@
 
 name = "nutrication-app"
 client_id = "e86e07aec7baf1f4fd940f2d9e7ee093"
-application_url = "https://epinions-motivated-greg-matches.trycloudflare.com"
+application_url = "https://lebanon-forth-calculations-research.trycloudflare.com"
 embedded = true
 
 [access_scopes]
@@ -11,10 +11,10 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://epinions-motivated-greg-matches.trycloudflare.com/auth/callback",
-  "https://epinions-motivated-greg-matches.trycloudflare.com/auth/shopify/callback",
-  "https://epinions-motivated-greg-matches.trycloudflare.com/api/auth/callback",
-  "https://epinions-motivated-greg-matches.trycloudflare.com/.shopify/graphiql/auth/callback"
+  "https://lebanon-forth-calculations-research.trycloudflare.com/auth/callback",
+  "https://lebanon-forth-calculations-research.trycloudflare.com/auth/shopify/callback",
+  "https://lebanon-forth-calculations-research.trycloudflare.com/api/auth/callback",
+  "https://lebanon-forth-calculations-research.trycloudflare.com/.shopify/graphiql/auth/callback"
 ]
 
 [webhooks]

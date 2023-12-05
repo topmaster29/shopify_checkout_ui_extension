@@ -19608,9 +19608,8 @@ ${errorInfo.componentStack}`);
       /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(InlineLayout2, { columns: ["10%", "fill"], children: [
         /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(View2, {}),
         /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(View2, { children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(TextBlock2, { size: "medium", children: shipping_text != null ? shipping_text : "" }) })
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(BlockSpacer2, { spacing: "loose" }),
-      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(TextBlock2, { emphasis: "bold", size: "extraLarge", inlineAlignment: "center", children: "Add Treats and Save" })
+      ] })
     ] });
   }
 })();
+//# sourceMappingURL=icon-text-block.js.map
