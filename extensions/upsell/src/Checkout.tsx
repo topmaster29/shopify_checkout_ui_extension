@@ -32,18 +32,17 @@ function Extension() {
   const [loading, setLoading] = useState(false);
   const [adding, setAdding] = useState(false);
   const [showError, setShowError] = useState(false);
-  const {product_type, product_num, collection_handle} = useSettings();
+  const { product_num, collection_handle, title} = useSettings();
 
 
 
   useEffect(() => {
-    console.log('--', product_type)
-    if(!product_type || !product_num || !collection_handle)return;
+    if(!product_num || !collection_handle)return;
     setLoading(true);
     query(
-      `query ($first: Int!, $productType: String!, $handle: String!) {
+      `query ($first: Int!, $handle: String!) {
         collection(handle: $handle){
-          products(first: $first, filters: {productType:$productType}) {
+          products(first: $first) {
             nodes {
               id
               title
@@ -52,6 +51,7 @@ function Extension() {
                   url
                 }
               }
+              handle
               variants(first: 1) {
                 nodes {
                   id
@@ -63,12 +63,24 @@ function Extension() {
                   }
                 }
               }
+              sellingPlanGroups(first: 1){
+                nodes{
+                  sellingPlans(first: 1){
+                    nodes{
+                      id
+                      name
+                    }
+                  }
+                }
+                
+              }
             }
           }
         }
       }`,
       {
-        variables: {first: parseInt(product_num as string), productType: product_type, handle: collection_handle},
+        variables: {first: parseInt(product_num as string), handle: collection_handle},
+        // variables: {first: 3, handle: "automated-collection"},
       },
     )
     .then(({data}:any) => {
@@ -76,7 +88,7 @@ function Extension() {
     })
     .catch((error) => console.error(error))
     .finally(() => setLoading(false));
-  }, [product_type, product_num, collection_handle]);
+  }, [product_num, collection_handle]);
 
   useEffect(() => {
     if (showError) {
@@ -87,7 +99,7 @@ function Extension() {
 
   const lines = useCartLines();
 
-  if(!product_type || !product_num || !collection_handle){
+  if(!product_num || !collection_handle){
     return (
       <Banner>Upsell: Configure settings</Banner>
     )
@@ -96,9 +108,8 @@ function Extension() {
   if (loading) {
     return (
       <BlockStack spacing="loose">
-        <Divider />
         <TextBlock emphasis="bold" size="extraLarge" inlineAlignment="center">
-          Add Treats and Save
+          {title ?? ''}
         </TextBlock>
         <BlockStack spacing="loose">
           <InlineLayout
@@ -142,7 +153,7 @@ function Extension() {
   return (
     <BlockStack spacing="loose">
       <TextBlock emphasis="bold" size="extraLarge" inlineAlignment="center">
-        Add Treats and Save
+      {title ?? ''}
       </TextBlock>
       <BlockStack spacing="loose">
         {productsOnOffer.map((e,i)=>(
@@ -166,7 +177,6 @@ function Extension() {
               <Text size="medium" emphasis="strong">
                 {e.title}
               </Text>
-              <Text appearance="subdued">One-time purchase</Text>
               <InlineStack>
                 <Text>${e.variants.nodes[0].price.amount}</Text>
                 {e.variants.nodes[0].compareAtPrice?.amount && <Text appearance="subdued" accessibilityRole="deletion">${e.variants.nodes[0].compareAtPrice?.amount ?? 0}</Text>}
@@ -182,13 +192,18 @@ function Extension() {
               kind="secondary"
               loading={adding}
               accessibilityLabel={`Add ${e.title} to cart`}
+              // to={`https://nutricanine.ca/products/${e.handle}`}
+
               onPress={async () => {
                 setAdding(true);
+
+                console.log('===============', e.sellingPlanGroups)
                 // Apply the cart lines change
                 const result = await applyCartLinesChange({
                   type: "addCartLine",
                   merchandiseId: e.variants.nodes[0].id,
                   quantity: 1,
+                  // sellingPlanId: e.sellingPlanGroups.nodes[0]?.sellingPlans.nodes[0]?.id ?? null
                 });
                 setAdding(false);
                 if (result.type === "error") {
@@ -198,6 +213,7 @@ function Extension() {
                   setShowError(true);
                   console.error(result.message);
                 }
+
               }}
             >
             Add • ${e.variants.nodes[0].price.amount}

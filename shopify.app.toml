@@ -2,7 +2,7 @@
 
 name = "nutrication-app"
 client_id = "e86e07aec7baf1f4fd940f2d9e7ee093"
-application_url = "https://cited-sans-wet-cordless.trycloudflare.com"
+application_url = "https://atm-symptoms-perceived-deutsche.trycloudflare.com"
 embedded = true
 
 [access_scopes]
@@ -11,10 +11,10 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://cited-sans-wet-cordless.trycloudflare.com/auth/callback",
-  "https://cited-sans-wet-cordless.trycloudflare.com/auth/shopify/callback",
-  "https://cited-sans-wet-cordless.trycloudflare.com/api/auth/callback",
-  "https://cited-sans-wet-cordless.trycloudflare.com/.shopify/graphiql/auth/callback"
+  "https://atm-symptoms-perceived-deutsche.trycloudflare.com/auth/callback",
+  "https://atm-symptoms-perceived-deutsche.trycloudflare.com/auth/shopify/callback",
+  "https://atm-symptoms-perceived-deutsche.trycloudflare.com/api/auth/callback",
+  "https://atm-symptoms-perceived-deutsche.trycloudflare.com/.shopify/graphiql/auth/callback"
 ]
 
 [webhooks]

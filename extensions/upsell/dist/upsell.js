@@ -18424,7 +18424,7 @@
   });
 
   // extensions/upsell/src/Checkout.tsx
-  var import_react21 = __toESM(require_react());
+  var import_react20 = __toESM(require_react());
 
   // node_modules/@remote-ui/rpc/build/esm/memory.mjs
   function isBasicObject(value) {
@@ -19133,9 +19133,6 @@
   // node_modules/@shopify/ui-extensions/build/esm/surfaces/checkout/components/Button/Button.mjs
   var Button = createRemoteComponent("Button");
 
-  // node_modules/@shopify/ui-extensions/build/esm/surfaces/checkout/components/Divider/Divider.mjs
-  var Divider = createRemoteComponent("Divider");
-
   // node_modules/@shopify/ui-extensions/build/esm/surfaces/checkout/components/Image/Image.mjs
   var Image = createRemoteComponent("Image");
 
@@ -19496,9 +19493,6 @@ ${errorInfo.componentStack}`);
     fragmentProps: ["overlay"]
   });
 
-  // node_modules/@shopify/ui-extensions-react/build/esm/surfaces/checkout/components/Divider/Divider.mjs
-  var Divider2 = createRemoteReactComponent(Divider);
-
   // node_modules/@shopify/ui-extensions-react/build/esm/surfaces/checkout/components/Image/Image.mjs
   var Image2 = createRemoteReactComponent(Image);
 
@@ -19521,7 +19515,7 @@ ${errorInfo.componentStack}`);
   var TextBlock2 = createRemoteReactComponent(TextBlock);
 
   // node_modules/@shopify/ui-extensions-react/build/esm/surfaces/checkout/hooks/api.mjs
-  var import_react19 = __toESM(require_react(), 1);
+  var import_react18 = __toESM(require_react(), 1);
 
   // node_modules/@shopify/ui-extensions-react/build/esm/surfaces/checkout/errors.mjs
   var CheckoutUIExtensionError = class extends Error {
@@ -19539,7 +19533,7 @@ ${errorInfo.componentStack}`);
 
   // node_modules/@shopify/ui-extensions-react/build/esm/surfaces/checkout/hooks/api.mjs
   function useApi(_target) {
-    const api = (0, import_react19.useContext)(ExtensionApiContext);
+    const api = (0, import_react18.useContext)(ExtensionApiContext);
     if (api == null) {
       throw new CheckoutUIExtensionError("You can only call this hook when running as a UI extension.");
     }
@@ -19547,10 +19541,10 @@ ${errorInfo.componentStack}`);
   }
 
   // node_modules/@shopify/ui-extensions-react/build/esm/surfaces/checkout/hooks/subscription.mjs
-  var import_react20 = __toESM(require_react(), 1);
+  var import_react19 = __toESM(require_react(), 1);
   function useSubscription(subscription) {
-    const [, setValue] = (0, import_react20.useState)(subscription.current);
-    (0, import_react20.useEffect)(() => {
+    const [, setValue] = (0, import_react19.useState)(subscription.current);
+    (0, import_react19.useEffect)(() => {
       let didUnsubscribe = false;
       const checkForUpdates = (newValue) => {
         if (didUnsubscribe) {
@@ -19598,20 +19592,19 @@ ${errorInfo.componentStack}`);
   function Extension() {
     const { query, i18n } = useApi();
     const applyCartLinesChange = useApplyCartLinesChange();
-    const [products, setProducts] = (0, import_react21.useState)([]);
-    const [loading, setLoading] = (0, import_react21.useState)(false);
-    const [adding, setAdding] = (0, import_react21.useState)(false);
-    const [showError, setShowError] = (0, import_react21.useState)(false);
-    const { product_type, product_num, collection_handle } = useSettings();
-    (0, import_react21.useEffect)(() => {
-      console.log("--", product_type);
-      if (!product_type || !product_num || !collection_handle)
+    const [products, setProducts] = (0, import_react20.useState)([]);
+    const [loading, setLoading] = (0, import_react20.useState)(false);
+    const [adding, setAdding] = (0, import_react20.useState)(false);
+    const [showError, setShowError] = (0, import_react20.useState)(false);
+    const { product_num, collection_handle } = useSettings();
+    (0, import_react20.useEffect)(() => {
+      if (!product_num || !collection_handle)
         return;
       setLoading(true);
       query(
-        `query ($first: Int!, $productType: String!, $handle: String!) {
+        `query ($first: Int!, $handle: String!) {
         collection(handle: $handle){
-          products(first: $first, filters: {productType:$productType}) {
+          products(first: $first) {
             nodes {
               id
               title
@@ -19620,6 +19613,7 @@ ${errorInfo.componentStack}`);
                   url
                 }
               }
+              handle
               variants(first: 1) {
                 nodes {
                   id
@@ -19631,30 +19625,41 @@ ${errorInfo.componentStack}`);
                   }
                 }
               }
+              sellingPlanGroups(first: 1){
+                nodes{
+                  sellingPlans(first: 1){
+                    nodes{
+                      id
+                      name
+                    }
+                  }
+                }
+                
+              }
             }
           }
         }
       }`,
         {
-          variables: { first: parseInt(product_num), productType: product_type, handle: collection_handle }
+          variables: { first: parseInt(product_num), handle: collection_handle }
+          // variables: {first: 3, handle: "automated-collection"},
         }
       ).then(({ data }) => {
         setProducts(data.collection.products.nodes);
       }).catch((error) => console.error(error)).finally(() => setLoading(false));
-    }, [product_type, product_num, collection_handle]);
-    (0, import_react21.useEffect)(() => {
+    }, [product_num, collection_handle]);
+    (0, import_react20.useEffect)(() => {
       if (showError) {
         const timer = setTimeout(() => setShowError(false), 3e3);
         return () => clearTimeout(timer);
       }
     }, [showError]);
     const lines = useCartLines();
-    if (!product_type || !product_num || !collection_handle) {
+    if (!product_num || !collection_handle) {
       return /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Banner2, { children: "Upsell: Configure settings" });
     }
     if (loading) {
       return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(BlockStack2, { spacing: "loose", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Divider2, {}),
         /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(TextBlock2, { emphasis: "bold", size: "extraLarge", inlineAlignment: "center", children: "Add Treats and Save" }),
         /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(BlockStack2, { spacing: "loose", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(
           InlineLayout2,
@@ -19691,7 +19696,6 @@ ${errorInfo.componentStack}`);
     }
     const defaultImgUrl = "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_medium.png?format=webp&v=1530129081";
     return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(BlockStack2, { spacing: "loose", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Divider2, {}),
       /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(TextBlock2, { emphasis: "bold", size: "extraLarge", inlineAlignment: "center", children: "Add Treats and Save" }),
       /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(BlockStack2, { spacing: "loose", children: productsOnOffer.map((e, i) => {
         var _a, _b, _c, _d, _e, _f, _g, _h;
@@ -19718,7 +19722,6 @@ ${errorInfo.componentStack}`);
               ),
               /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(BlockStack2, { spacing: "none", children: [
                 /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Text2, { size: "medium", emphasis: "strong", children: e.title }),
-                /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Text2, { appearance: "subdued", children: "One-time purchase" }),
                 /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(InlineStack2, { children: [
                   /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(Text2, { children: [
                     "$",
@@ -19741,19 +19744,7 @@ ${errorInfo.componentStack}`);
                   kind: "secondary",
                   loading: adding,
                   accessibilityLabel: `Add ${e.title} to cart`,
-                  onPress: () => __async(this, null, function* () {
-                    setAdding(true);
-                    const result = yield applyCartLinesChange({
-                      type: "addCartLine",
-                      merchandiseId: e.variants.nodes[0].id,
-                      quantity: 1
-                    });
-                    setAdding(false);
-                    if (result.type === "error") {
-                      setShowError(true);
-                      console.error(result.message);
-                    }
-                  }),
+                  to: `https://nutricanine.ca/${e.handle}`,
                   children: [
                     "Add \u2022 $",
                     e.variants.nodes[0].price.amount

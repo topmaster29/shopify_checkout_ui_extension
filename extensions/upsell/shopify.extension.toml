@@ -43,13 +43,11 @@ api_access = true
 # your extension. Learn more:
 # https://shopify.dev/docs/api/checkout-ui-extensions/unstable/configuration#settings-definition
 
- [extensions.settings]
- [[extensions.settings.fields]]
- key = "product_type"
+[[extensions.settings.fields]]
+ key = "title"
  type = "single_line_text_field"
- name = "Product Type"
- description = "Enter product type you want to add"
-
+ name = "Header Title"
+ description = "Enter title"
 [[extensions.settings.fields]]
  key = "product_num"
  type = "single_line_text_field"
